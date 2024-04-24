@@ -1,0 +1,117 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: black; /* Ajoutez un fond noir à la page */
+    color: white; /* Changez la couleur du texte en blanc pour une meilleure lisibilité */
+}
+
+.container {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.category {
+    margin-bottom: 20px;
+    background-color: #151515; /* Ajoutez un fond gris foncé aux div */
+    border-radius: 5px; /* Ajoutez une bordure arrondie */
+    padding: 10px; /* Ajoutez un remplissage pour l'espace intérieur */
+}
+
+.category-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.object-list {
+    max-height: 400px;
+    overflow-y: auto;
+    padding-right: 4px; /* Ajoutez un padding de 4 pixels à droite */
+}
+
+
+.object-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #444;
+    border-radius: 5px;
+}
+
+.object-image {
+    width: 50px;
+    height: 50px;
+    margin-right: 20px;
+}
+
+.object-details {
+    flex-grow: 1;
+}
+
+.object-count {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+/* Ajoutez ces styles pour la zone de texte éditable */
+.object-count-input {
+    width: 60px; /* Ajustez la largeur selon vos préférences */
+    text-align: center; /* Centrez le texte dans la zone de texte */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
+    margin-right: 10px; /* Ajoutez un espacement à droite pour séparer des boutons */
+    font-size: inherit; /* Utilisez la taille de police héritée */
+    background-color: #333; /* Fond gris foncé */
+    color: white; /* Texte blanc */
+}
+
+.object-count-input:focus {
+    outline: none; /* Supprimez le contour lorsqu'elle est en focus */
+    border-color: #3498DB; /* Changez la couleur de la bordure lorsqu'elle est en focus */
+}
+
+
+.object-buttons {
+    display: flex;
+    align-items: center;
+}
+
+button {
+    margin-right: 5px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button.increment {
+    background-color: #4CAF50;
+    color: white;
+}
+
+button.decrement {
+    background-color: #FF5733;
+    color: white;
+}
+
+button.reset {
+    background-color: #3498DB;
+    color: white;
+}
+
+/* Personnalisation de la barre de défilement pour les deux div principales */
+.object-list::-webkit-scrollbar {
+    width: 8px; /* Largeur de la barre de défilement */
+}
+
+.object-list::-webkit-scrollbar-thumb {
+    background-color: #555; /* Couleur de la poignée de défilement */
+    border-radius: 4px; /* Arrondi des bords de la poignée */
+}
+
+.object-list::-webkit-scrollbar-thumb:hover {
+    background-color: #777; /* Couleur de la poignée de défilement au survol */
+}
