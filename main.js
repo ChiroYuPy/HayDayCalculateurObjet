@@ -3,7 +3,7 @@ let siloCounts = JSON.parse(localStorage.getItem('siloCounts')) || {
     "Maïs": 0
 };
 
-let grangeCounts = JSON.parse(localStorage.getItem('siloCounts')) || {
+let grangeCounts = JSON.parse(localStorage.getItem('grangeCounts')) || {
     
     "Pain": 0,
     "Bouffe a poule": 0,
