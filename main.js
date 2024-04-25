@@ -3,7 +3,7 @@ let siloCounts = JSON.parse(localStorage.getItem('siloCounts')) || {
     "Maïs": 0
 };
 
-let grangeCounts = {
+let grangeCounts = JSON.parse(localStorage.getItem('siloCounts')) || {
     
     "Pain": 0,
     "Bouffe a poule": 0,
@@ -118,7 +118,7 @@ for (let obj in grangeCounts) {
 }
 // Fonction pour créer un élément d'objet
 
-function createObjectItem(obj, category, incrementFunc, decrementFunc, resetFunc) {
+function createObjectItem(obj, category, incrementFunc, decrementFunc) {
     const objectItem = document.createElement("div");
     objectItem.classList.add("object-item");
 
@@ -164,19 +164,9 @@ function createObjectItem(obj, category, incrementFunc, decrementFunc, resetFunc
             saveCountsToLocalStorage();
         }
     };
-    const resetButton = document.createElement("button");
-    resetButton.classList.add("reset");
-    resetButton.innerText = "Reset";
-    resetButton.onclick = function() {
-        objectCountInput.value = 0;
-        category[obj] = 0;
-        updateTotalCount();
-        saveCountsToLocalStorage();
-    };
 
     objectButtons.appendChild(incrementButton);
     objectButtons.appendChild(decrementButton);
-    objectButtons.appendChild(resetButton);
 
     objectItem.appendChild(objectImage);
     objectItem.appendChild(objectDetails);
@@ -185,6 +175,7 @@ function createObjectItem(obj, category, incrementFunc, decrementFunc, resetFunc
 
     return objectItem;
 }
+
 
 
 
