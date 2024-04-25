@@ -1,16 +1,41 @@
 let siloCounts = JSON.parse(localStorage.getItem('siloCounts')) || {
-    "Wheat": 0,
-    "Corn": 0,
-    "Objet 3": 0
+    "Blé": 0,
+    "Maïs": 0
 };
 
-let grangeCounts = JSON.parse(localStorage.getItem('grangeCounts')) || {
-    "Objet A": 0,
-    "Objet B": 0,
-    "Objet C": 0,
-    "Objet D": 0,
-    "Objet E": 0,
-    "Objet F": 0,
+let grangeCounts = {
+    
+    "Pain": 0,
+    "Bouffe a poule": 0,
+    "Bouffe a vâche": 0,
+    "Creme": 0,
+    "Pain de maïs": 0,
+    "Sucre roux": 0,
+    "Sachet de maïs": 0,
+    "Beurre": 0,
+    "Pancake": 0,
+    "Bouffe a cochon": 0,
+    "Cookie": 0,
+    "Oeuf au bacon": 0,
+    "Fromage": 0,
+    "Sucre blanc": 0,
+    "Tarte a la carotte": 0,
+    "Tarte a la citrouille": 0,
+    "Bouffe a mouton": 0,
+    "Sachet de maïs beurré": 0,
+    "Tarte aux bacon": 0,
+    "Sirop": 0,
+    "Tissu": 0,
+    "Hamburger": 0,
+    "Muffin a la framboise": 0,
+    "Bonnet bleu": 0,
+    "Chemise en coton": 0,
+    "Pull bleu": 0,
+    "Gateau a la carrote": 0,
+    "Jambiere en laine": 0,
+    "Gâteau a la créme": 0,
+    "Gâteau fruits rouges": 0,
+    "Cheesecake": 0,
 };
 
 // Définition des valeurs maximales
