@@ -7,7 +7,7 @@ body {
 }
 
 .container {
-    max-width: 400px;
+    max-width: 540px;
     margin: 0 auto;
 }
 
@@ -25,7 +25,7 @@ body {
 }
 
 .object-list {
-    max-height: 400px;
+    max-height: 420px;
     overflow-y: auto;
     padding-right: 4px; /* Ajoutez un padding de 4 pixels à droite */
 }
