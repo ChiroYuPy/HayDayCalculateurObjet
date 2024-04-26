@@ -1,75 +1,53 @@
-let siloCounts = JSON.parse(localStorage.getItem('siloCounts')) || {
-    "Blé": 0,
-    "Maïs": 0
-};
+const group1 = document.getElementById("category1-title");
+const group2 = document.getElementById("category2-title");
 
-let grangeCounts = JSON.parse(localStorage.getItem('grangeCounts')) || {
-    
-    "Pain": 0,
-    "Bouffe a poule": 0,
-    "Bouffe a vâche": 0,
-    "Creme": 0,
-    "Pain de maïs": 0,
-    "Sucre roux": 0,
-    "Sachet de maïs": 0,
-    "Beurre": 0,
-    "Pancake": 0,
-    "Bouffe a cochon": 0,
-    "Cookie": 0,
-    "Oeuf au bacon": 0,
-    "Fromage": 0,
-    "Sucre blanc": 0,
-    "Tarte a la carotte": 0,
-    "Tarte a la citrouille": 0,
-    "Bouffe a mouton": 0,
-    "Sachet de maïs beurré": 0,
-    "Tarte aux bacon": 0,
-    "Sirop": 0,
-    "Tissu": 0,
-    "Hamburger": 0,
-    "Muffin a la framboise": 0,
-    "Bonnet bleu": 0,
-    "Chemise en coton": 0,
-    "Pull bleu": 0,
-    "Gateau a la carrote": 0,
-    "Jambiere en laine": 0,
-    "Gâteau a la créme": 0,
-    "Gâteau fruits rouges": 0,
-    "Cheesecake": 0,
-};
+let togglegroup1 = false;
+let togglegroup2 = false;
 
-// Définition des valeurs maximales
-const siloMax = 1025;
-const grangeMax = 1050;
+const category1 = document.getElementById("category1");
+const category2 = document.getElementById("category2");
 
-// Modifier les fonctions d'incrémentation, de décrémentation et de réinitialisation pour appeler la fonction de sauvegarde après chaque modification
-function increment(category, object) {
-    category[object]++;
-    updateCount(category, object);
-    saveCountsToLocalStorage();
-}
+group1.addEventListener("click", 
+function(e) {
+    console.log("click")
+    if (togglegroup1) {
+        category1.classList.remove("show")
+        togglegroup1 = false
 
-function decrement(category, object) {
-    if (category[object] > 0) {
-        category[object]--;
-        updateCount(category, object);
-        saveCountsToLocalStorage();
+                category2.classList.add("show")
+        togglegroup2 = true
+    } else {
+        category1.classList.add("show")
+        togglegroup1 = true
+
+        category2.classList.remove("show")
+        togglegroup2 = false
     }
-}
+});
 
-function reset(category, object) {
-    category[object] = 0;
-    updateCount(category, object);
-    saveCountsToLocalStorage();
-}
+group2.addEventListener("click", 
+function(e) {
+    if (togglegroup2) {
+        category2.classList.remove("show")
+        togglegroup2 = false
 
-// Fonction de sauvegarde des valeurs des objets dans le stockage local
+        category1.classList.add("show")
+        togglegroup1 = true
+    } else {
+        category2.classList.add("show")
+        togglegroup2 = true
+
+        category1.classList.remove("show")
+        togglegroup1 = false
+    }
+});
+
+
 function saveCountsToLocalStorage() {
     localStorage.setItem('siloCounts', JSON.stringify(getObjectValues(siloCounts)));
     localStorage.setItem('grangeCounts', JSON.stringify(getObjectValues(grangeCounts)));
 }
 
-// Fonction pour extraire uniquement les valeurs des objets d'une catégorie
 function getObjectValues(category) {
     const values = {};
     for (let obj in category) {
@@ -77,8 +55,6 @@ function getObjectValues(category) {
     }
     return values;
 }
-
-// Fonction de mise à jour du nombre total d'objets pour chaque catégorie
 
 function updateCount(category, object) {
     const objectCountElement = document.getElementById(`count-${object}`);
@@ -95,13 +71,13 @@ function updateCategoryTotalCount(category, max, titleId) {
     const totalCountElement = document.getElementById(titleId);
     let totalCount = 0;
     for (let obj in category) {
-        totalCount += category[obj];
+        console.log(category[obj]);
+        totalCount += category[obj].count;
     }
     const titleText = totalCountElement.innerText.split(" ")[0];
     totalCountElement.textContent = `${titleText} (${totalCount}/${max})`;
 }
 
-// Création des objets dans la liste pour le Silo
 
 const objectList1 = document.getElementById("object-list1");
 for (let obj in siloCounts) {
@@ -109,14 +85,11 @@ for (let obj in siloCounts) {
     objectList1.appendChild(objectItem);
 }
 
-// Création des objets dans la liste pour la Grange
-
 const objectList2 = document.getElementById("object-list2");
 for (let obj in grangeCounts) {
     const objectItem = createObjectItem(obj, grangeCounts, increment, decrement, reset);
     objectList2.appendChild(objectItem);
 }
-// Fonction pour créer un élément d'objet
 
 function createObjectItem(obj, category, incrementFunc, decrementFunc) {
     const objectItem = document.createElement("div");
@@ -124,20 +97,34 @@ function createObjectItem(obj, category, incrementFunc, decrementFunc) {
 
     const objectImage = document.createElement("img");
     objectImage.classList.add("object-image");
-    objectImage.src = `assets/images/${obj}.png`;
-    objectImage.alt = obj;
+
+    const imageUrl = category[obj].imageName ? `images/${category[obj].imageName}` : "images/default.png";
+    
+    // Charger l'image dans un objet Image
+    const tempImage = new Image();
+    tempImage.onload = function() {
+        // L'image a été chargée avec succès, assignez-la à l'élément img
+        objectImage.src = imageUrl;
+    };
+    tempImage.onerror = function() {
+        // L'image n'existe pas, charger l'image par défaut
+        objectImage.src = "images/default.png";
+    };
+    tempImage.src = imageUrl; // Commencer le chargement de l'image
+
+    objectImage.alt = category[obj].displayName;
 
     const objectDetails = document.createElement("div");
     objectDetails.classList.add("object-details");
-    objectDetails.innerText = obj;
+    objectDetails.innerText = category[obj].displayName;
 
     const objectCountInput = document.createElement("input");
     objectCountInput.classList.add("object-count-input");
     objectCountInput.type = "number";
     objectCountInput.min = "0";
-    objectCountInput.value = category[obj];
+    objectCountInput.value = category[obj].count;
     objectCountInput.addEventListener("change", function() {
-        category[obj] = parseInt(objectCountInput.value);
+        category[obj].count = parseInt(objectCountInput.value);
         updateTotalCount();
         saveCountsToLocalStorage();
     });
@@ -149,7 +136,7 @@ function createObjectItem(obj, category, incrementFunc, decrementFunc) {
     incrementButton.innerText = "+";
     incrementButton.onclick = function() {
         objectCountInput.value = parseInt(objectCountInput.value) + 1;
-        category[obj] = parseInt(objectCountInput.value);
+        category[obj].count = parseInt(objectCountInput.value);
         updateTotalCount();
         saveCountsToLocalStorage();
     };
@@ -159,7 +146,7 @@ function createObjectItem(obj, category, incrementFunc, decrementFunc) {
     decrementButton.onclick = function() {
         if (parseInt(objectCountInput.value) > 0) {
             objectCountInput.value = parseInt(objectCountInput.value) - 1;
-            category[obj] = parseInt(objectCountInput.value);
+            category[obj].count = parseInt(objectCountInput.value);
             updateTotalCount();
             saveCountsToLocalStorage();
         }
@@ -175,10 +162,5 @@ function createObjectItem(obj, category, incrementFunc, decrementFunc) {
 
     return objectItem;
 }
-
-
-
-
-// Mettre à jour le nombre total d'objets au chargement de la page
 
 updateTotalCount();
