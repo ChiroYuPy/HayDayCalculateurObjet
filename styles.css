@@ -2,8 +2,8 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 20px;
-    background-color: black; /* Ajoutez un fond noir à la page */
-    color: white; /* Changez la couleur du texte en blanc pour une meilleure lisibilité */
+    background-color: black;
+    color: white;
 }
 
 .container {
@@ -12,20 +12,47 @@ body {
 }
 
 .category {
+    display: flex;
+    flex-direction: column;
     margin-bottom: 20px;
-    background-color: #151515; /* Ajoutez un fond gris foncé aux div */
+    background-color: #151515;
     border-radius: 5px; /* Ajoutez une bordure arrondie */
     padding: 10px; /* Ajoutez un remplissage pour l'espace intérieur */
+    height: 48px;
+    overflow: hidden;
+    transition: height 200ms ease-in;
 }
 
 .category-title {
-    font-size: 20px;
+    font-size: 40px;
     font-weight: bold;
-    margin-bottom: 10px;
+    text-align: center;
 }
 
+.category.show {
+    height: 80vb;
+    transition: height 200ms ease-in;
+}
+
+#category1-title {
+    cursor: pointer
+}
+
+#category2-title {
+    cursor: pointer
+}
+
+@font-face {
+    font-family: 'MightySouly';
+    src: url('MightySouly.ttf') format('truetype');
+  }
+  
+.mighty-font {
+    font-family: 'MightySouly', sans-serif;
+  }
+
 .object-list {
-    max-height: 420px;
+    max-height: 74vb;
     overflow-y: auto;
     padding-right: 4px; /* Ajoutez un padding de 4 pixels à droite */
 }
@@ -36,14 +63,15 @@ body {
     align-items: center;
     margin-bottom: 10px;
     padding: 10px;
-    border: 1px solid #444;
+    border: 1px solid #181818;
+    background-color: #222;
     border-radius: 5px;
 }
 
 .object-image {
     width: 50px;
     height: 50px;
-    margin-right: 20px;
+    margin-right: 16px;
 }
 
 .object-details {
@@ -59,8 +87,7 @@ body {
 .object-count-input {
     width: 60px; /* Ajustez la largeur selon vos préférences */
     text-align: center; /* Centrez le texte dans la zone de texte */
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 6px;
     padding: 5px;
     margin-right: 10px; /* Ajoutez un espacement à droite pour séparer des boutons */
     font-size: inherit; /* Utilisez la taille de police héritée */
@@ -88,18 +115,17 @@ button {
 }
 
 button.increment {
-    background-color: #4CAF50;
+    background-color: #3498DB;
     color: white;
+    width: 27px;
+    height: 27px;
 }
 
 button.decrement {
     background-color: #FF5733;
     color: white;
-}
-
-button.reset {
-    background-color: #3498DB;
-    color: white;
+    width: 27px;
+    height: 27px;
 }
 
 /* Personnalisation de la barre de défilement pour les deux div principales */
