@@ -1,7 +1,7 @@
 const group1 = document.getElementById("category1-title");
 const group2 = document.getElementById("category2-title");
 
-let togglegroup1 = false;
+let togglegroup1 = true;
 let togglegroup2 = false;
 
 const category1 = document.getElementById("category1");
